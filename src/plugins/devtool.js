@@ -248,13 +248,14 @@ function transformPathsToObjectTree (getters) {
       const leafKey = path.pop()
       path.forEach((p) => {
         if (!target[p]) {
-          target[p] = {
-            _custom: {
-              value: {},
-              display: p,
-              tooltip: 'Module',
-              abstract: true
-            }
+          target[p] = {};
+        }
+        if (!target[p]._custom) {
+          target[p]._custom = {
+            value: {},
+            display: p,
+            tooltip: 'Module',
+            abstract: true
           }
         }
         target = target[p]._custom.value
